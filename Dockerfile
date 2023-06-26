@@ -16,7 +16,7 @@ FROM nginx:1.25-alpine-slim
 
 COPY --from=frontend /app/site/dist /usr/share/nginx/html
 COPY init /init
-RUN chmod +x /init
+RUN chmod a+x /init
 
 EXPOSE 80
 EXPOSE 443
