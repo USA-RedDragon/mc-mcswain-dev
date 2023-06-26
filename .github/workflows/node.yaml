@@ -1,0 +1,26 @@
+name: Node CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  node:
+    runs-on: ubuntu-latest
+    env:
+      NODE_ENV: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.3"
+
+      - run: cd site && npm ci
+        env:
+          NODE_ENV: development
+
+      - run: cd site && npm run lint
+      - run: cd site && npm run build
