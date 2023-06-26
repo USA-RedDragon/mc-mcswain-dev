@@ -12,16 +12,16 @@ if openssl x509 -checkend 86400 -noout -in /etc/letsencrypt/live/${MAP_HOSTNAME}
 then
   echo "Certificate ${MAP_HOSTNAME} is good for another day!"
 else
-  echo "Certificate has expired or doesn't exist!"
-  certbot certonly -m ${ACME_EMAIL} -d ${MAP_HOSTNAME} --agree-tos -n --dns-cloudflare --dns-cloudflare-credentials /etc/dnscloudflare.ini
+  echo "Certificate ${SITE_HOSTNAME} has expired or doesn't exist!"
+  certbot certonly -m ${ACME_EMAIL} -d ${MAP_HOSTNAME} --agree-tos -n --dns-cloudflare --dns-cloudflare-propagation-seconds 120 --dns-cloudflare-credentials /etc/dnscloudflare.ini
 fi
 
 if openssl x509 -checkend 86400 -noout -in /etc/letsencrypt/live/${SITE_HOSTNAME}/fullchain.pem 2>/dev/null;
 then
   echo "Certificate ${SITE_HOSTNAME} is good for another day!"
 else
-  echo "Certificate has expired or doesn't exist!"
-  certbot certonly -m ${ACME_EMAIL} -d ${SITE_HOSTNAME} --agree-tos -n --dns-cloudflare --dns-cloudflare-credentials /etc/dnscloudflare.ini
+  echo "Certificate ${SITE_HOSTNAME} has expired or doesn't exist!"
+  certbot certonly -m ${ACME_EMAIL} -d ${SITE_HOSTNAME} --agree-tos -n --dns-cloudflare --dns-cloudflare-propagation-seconds 120 --dns-cloudflare-credentials /etc/dnscloudflare.ini
 fi
 
 if [ ! -f /etc/letsencrypt/ssl-dhparams.pem ]; then

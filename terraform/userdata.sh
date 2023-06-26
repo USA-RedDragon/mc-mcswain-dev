@@ -18,7 +18,7 @@ docker run -d \
     -p 443:443 \
     -p 25565:25565 \
     -p ${server_minecraft_port}:${server_minecraft_port} \
-    -v /etc/letsencrypt:/etc/letsencrypt:ro \
+    -v /etc/letsencrypt:/etc/letsencrypt \
     --name mc-server-site \
     --restart unless-stopped \
     ${docker_image}
