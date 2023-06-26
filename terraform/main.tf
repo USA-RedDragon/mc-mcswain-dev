@@ -1,11 +1,11 @@
 terraform {
-  # cloud {
-  #   organization = "Personal-McSwain"
+  cloud {
+    organization = "Personal-McSwain"
 
-  #   workspaces {
-  #     name = "mc-mcswain-dev"
-  #   }
-  # }
+    workspaces {
+      name = "mc-mcswain-dev"
+    }
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -42,7 +42,7 @@ data "aws_availability_zones" "available_zones" {
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
-  name = aws_kms_key.log-encryption.arn
+  name = local.name
   cidr = local.vpc_cidr
 
   azs = data.aws_availability_zones.available_zones.names
@@ -53,13 +53,17 @@ module "vpc" {
   ]
 }
 
-data "aws_ami" "ecs" {
+data "aws_ami" "ubuntu" {
   most_recent = true
+  owners      = ["099720109477"]
 
   filter {
     name   = "name"
-    values = ["amzn2-ami-ecs-hvm-*-x86_64-ebs"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
   }
 
-  owners = ["amazon"]
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
 }
