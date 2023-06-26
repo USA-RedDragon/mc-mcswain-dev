@@ -15,6 +15,7 @@ RUN cd site && npm run build
 FROM nginx:1.25-alpine-slim
 
 COPY --from=frontend /app/site/dist /usr/share/nginx/html
+COPY rootfs /
 
 RUN <<__EODOCKER__
 
@@ -48,5 +49,8 @@ EOF
 __EODOCKER__
 
 EXPOSE 80
+EXPOSE 443
+EXPOSE 25565
+EXPOSE 25579
 
 CMD ["nginx", "-g", "daemon off;"]
