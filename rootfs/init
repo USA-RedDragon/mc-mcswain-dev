@@ -8,7 +8,7 @@ dns_cloudflare_api_token = ${CLOUDFLARE_API_TOKEN}
 EOF
 chmod 600 /etc/dnscloudflare.ini
 
-if openssl x509 -checkend 86400 -noout -in /etc/letsencrypt/live/${MAP_HOSTNAME}/fullchain.pem 2>/dev/null
+if openssl x509 -checkend 86400 -noout -in /etc/letsencrypt/live/${MAP_HOSTNAME}/fullchain.pem 2>/dev/null;
 then
   echo "Certificate ${MAP_HOSTNAME} is good for another day!"
 else
@@ -16,7 +16,7 @@ else
   certbot certonly -m ${ACME_EMAIL} -d ${MAP_HOSTNAME} --agree-tos -n --dns-cloudflare --dns-cloudflare-credentials /etc/dnscloudflare.ini
 fi
 
-if openssl x509 -checkend 86400 -noout -in /etc/letsencrypt/live/${SITE_HOSTNAME}/fullchain.pem 2>/dev/null
+if openssl x509 -checkend 86400 -noout -in /etc/letsencrypt/live/${SITE_HOSTNAME}/fullchain.pem 2>/dev/null;
 then
   echo "Certificate ${SITE_HOSTNAME} is good for another day!"
 else
