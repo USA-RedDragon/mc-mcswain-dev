@@ -19,7 +19,7 @@ RUN pip3 install certbot certbot-nginx certbot-dns-cloudflare
 
 COPY --from=frontend /app/site/dist /usr/share/nginx/html
 COPY rootfs /
-RUN chmod a+x /init
+RUN chmod a+x /init /etc/s6/*/run
 
 EXPOSE 80
 EXPOSE 443
