@@ -36,10 +36,9 @@ a,
 
 @font-face {
   font-family: "minecraftfont";
-  src: url(/public/fonts/1412/minecraftfont.eot);
-  src: local("minecraftfont"), url(http://fontsforweb.com/public/fonts/1412/minecraftfont.ttf) format("truetype");
+  src: local("minecraftfont"), url("/fonts/minecraftfont.ttf") format("truetype");
 }
 
 .mctext {
-font-family: 'minecraftfont';
+  font-family: 'minecraftfont';
 }
