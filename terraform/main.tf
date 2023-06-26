@@ -1,11 +1,11 @@
 terraform {
-  cloud {
-    organization = "Personal-McSwain"
+  # cloud {
+  #   organization = "Personal-McSwain"
 
-    workspaces {
-      name = "mc-mcswain-dev"
-    }
-  }
+  #   workspaces {
+  #     name = "mc-mcswain-dev"
+  #   }
+  # }
   required_providers {
     aws = {
       source  = "hashicorp/aws"

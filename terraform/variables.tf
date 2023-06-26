@@ -3,9 +3,14 @@ variable "aws_region" {
   default = "us-east-1"
 }
 
-variable "docker_image" {
+variable "site_docker_image" {
   type    = string
-  default = "ghcr.io/usa-reddragon/mc-mcswain-dev:latest"
+  default = "ghcr.io/usa-reddragon/mc-mcswain-dev-site:latest"
+}
+
+variable "map_docker_image" {
+  type    = string
+  default = "ghcr.io/usa-reddragon/mc-mcswain-dev-map:latest"
 }
 
 variable "hostname" {

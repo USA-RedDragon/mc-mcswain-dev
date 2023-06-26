@@ -22,10 +22,19 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build and push
+      - name: Build and push site
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: ghcr.io/usa-reddragon/mc-mcswain-dev:latest
+          file: Dockerfile.site
+          tags: ghcr.io/usa-reddragon/mc-mcswain-dev-site:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Build and push map proxy
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          file: Dockerfile.map
+          tags: ghcr.io/usa-reddragon/mc-mcswain-dev-map:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
