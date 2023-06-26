@@ -6,6 +6,8 @@ apt-get -o DPkg::Lock::Timeout=60 -o DPkg::Lock::Frontend=noninteractive install
 
 usermod -aG docker ubuntu
 
+systemctl enable --now docker
+
 docker run -d \
     -e SERVER_IP=${server_ip} \
     -e SERVER_PORT=${server_minecraft_port} \
