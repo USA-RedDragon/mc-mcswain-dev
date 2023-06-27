@@ -18,9 +18,9 @@ jobs:
         with:
           node-version: "20.3"
 
-      - run: cd site && npm ci
+      - run: npm ci
         env:
           NODE_ENV: development
 
-      - run: cd site && npm run lint
-      - run: cd site && npm run build
+      - run: npm run lint
+      - run: npm run build
