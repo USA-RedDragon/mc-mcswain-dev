@@ -55,22 +55,3 @@ jobs:
           retention-days: 30
           path: eslint_report.json
 
-  docker:
-    runs-on: ubuntu-22.04
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-        with:
-          platforms: linux/amd64,linux/arm64
-
-      - name: Build
-        uses: docker/build-push-action@v5
-        with:
-          push: false
-          platforms: linux/amd64,linux/arm64
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
