@@ -10,7 +10,7 @@ COPY . /app
 
 RUN npm run build
 
-FROM nginx:1.29-alpine-slim
+FROM nginx:1.31-alpine-slim@sha256:f45171d36c76a8b2f5ef97108a3a8a2294248a6578a0a180edc2d78f7d2edc26
 
 COPY --from=frontend /app/dist /usr/share/nginx/html
 
