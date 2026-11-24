@@ -1,4 +1,4 @@
-FROM node:21.7.3-alpine as frontend
+FROM node:21.7.3-alpine@sha256:78c45726ea205bbe2f23889470f03b46ac988d14b6d813d095e2e9909f586f93 as frontend
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ COPY . /app
 
 RUN npm run build
 
-FROM nginx:1.29-alpine-slim
+FROM nginx:1.31-alpine-slim@sha256:c293b28729906d97fa5302fce3bd79bd27a3ea9a5d9604e21c6ff0ebf14549fc
 
 COPY --from=frontend /app/dist /usr/share/nginx/html
 
